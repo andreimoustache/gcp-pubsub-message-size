@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GCP Pub/Sub message size estimator</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script src="calculator.js"></script>
+  </head>
+  <body>
+    <div id="target" class="container"></div>
+
+    <script id="template" type="text/ractive">
+      <div class="columns is-centered is-vcentered">
+        <div class="column is-one-third">
+          <h2>Message</h2>
+          <textarea class="textarea" rows="10" placeholder='{"some_property": true}'>{{message}}</textarea>
+        </div>
+        <div class="column is-narrow">
+          Message size is <span class="is-family-monospace has-text-weight-bold">{{messageSize}}B</span>.
+        </div>
+        </div>
+        <div class="columns is-centered is-vcentered">
+        <div class="column is-one-third">
+          <h2>Custom attributes</h2>
+          <textarea class="textarea" rows="3">{{attributes}}</textarea>
+        </div>
+        <div class="column is-narrow">
+          Attributes size is <span class="is-family-monospace has-text-weight-bold">{{attributesSize}}B</span>.
+        </div>
+        </div>
+        <div class="columns is-centered is-vcentered">
+        <div class="column is-narrow">
+          <h2>Other metadata</h2>
+          <ul>
+            <li>The <span class="is-family-monospace">timestamp</span> field is <span class="is-family-monospace has-text-weight-bold">20B</span>.
+            <li>Hm.
+          </ul>
+        </div>
+        </div>
+
+        <div class="columns is-centered">
+        <div class="column is-narrow">
+          Total payload size is <span class="is-family-monospace has-text-weight-bold">{{payloadSize}}B</span>.
+        </div>
+        </div>
+
+        <div class="columns is-centered">
+        <div class="column is-one-third">
+          <h2 class="title is-5">Production rate</h2>
+          <p class="subtitle is-6 is-italic">messages over a time period</p>
+          <div class="field is-horizontal">
+            <input type="number" class="input" value={{rate}}> per
+            <div class="select">
+              <select>
+                <option>day</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        </div>
+        <div class="columns is-centered">
+        <div class="column is-narrow">
+          Daily volume is <span class="is-family-monospace has-text-weight-bold">{{volume}}B</span> per day.
+        </div>
+      </div>
+    </script>
+  </body>
+</html>
