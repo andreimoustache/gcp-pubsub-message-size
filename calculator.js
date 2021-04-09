@@ -27,39 +27,31 @@ function getSerialisedSize(o) {
   return encodedMessage.length;
 }
 
-function bindRactive(ractive) {
-  ractive.observe("message", function (newValue, oldValue) {
-    let messageSize = 0;
-    if (!!newValue) messageSize = getSerialisedSize(newValue);
-    ractive.set("messageSize", messageSize);
-  });
-
-  ractive.observe("attributes", function (newValue, oldValue) {
-    let attributesSize = 0;
-    if (!!newValue) attributesSize = getSerialisedSize(newValue);
-    ractive.set("attributesSize", attributesSize);
-  });
-
-  ractive.observe("attributesSize messageSize", function () {
-    ractive.set(
-      "payloadSize",
-      ractive.get("messageSize") + ractive.get("attributesSize") + 20
-    );
-  });
-
-  ractive.observe("payloadSize rate", function () {
-    ractive.set("volume", ractive.get("payloadSize") * ractive.get("rate"));
-  });x  
-}
-
 document.addEventListener("DOMContentLoaded", function (_) {
-  const ractive = new Ractive({
+  new Ractive({
     target: "#target",
     template: "#template",
     data: {
+      message: '{ "some_property": true }',
+      attributes: null,
       rate: 100,
+      ratePeriod: 1
     },
+    computed: {
+      messageSize () {
+        const message = this.get('message');
+        return !!message ? getSerialisedSize(message) : 0;
+      },
+      attributesSize () {
+        const attributes = this.get('attributes');
+        return !!attributes ? getSerialisedSize(attributes) - 2 : 0
+      },
+      payloadSize () {
+        return this.get('messageSize') + this.get('attributesSize') + 20;
+      },
+      volume () {
+        return this.get('payloadSize') * this.get('rate') * parseInt(this.get('ratePeriod'));
+      }
+    }
   });
-
-  bindRactive(ractive);
 });
