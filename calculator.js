@@ -7,6 +7,24 @@ function calculate(messsage, attributes) {
   return messageSize + attributesSize + timestampSize;
 }
 
+const UNITS = {
+  B: "B",
+  KiB: "KiB",
+  MiB: "MiB",
+  GiB: "GiB",
+}
+
+function calculateVolume(size, rate, period) {
+  let amount = size * rate * period;
+  for (const units of Object.keys(UNITS)) {
+    if (amount < 1024) {
+      amount = amount.toFixed(2);
+      return ({ amount, units });
+    }
+    amount/=1024;
+  }
+}
+
 function parseJsonOrDefault(o) {
   if (!o) return {};
 
@@ -28,11 +46,12 @@ function getSerialisedSize(o) {
 }
 
 document.addEventListener("DOMContentLoaded", function (_) {
+  const defaultMessage = { "some_property": true };
   new Ractive({
     target: "#target",
     template: "#template",
     data: {
-      message: '{ "some_property": true }',
+      message: JSON.stringify(defaultMessage, null, 2),
       attributes: null,
       rate: 100,
       ratePeriod: 1
@@ -50,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function (_) {
         return this.get('messageSize') + this.get('attributesSize') + 20;
       },
       volume () {
-        return this.get('payloadSize') * this.get('rate') * parseInt(this.get('ratePeriod'));
+        return calculateVolume(this.get('payloadSize'), this.get('rate'), parseInt(this.get('ratePeriod')));
       }
     }
   });
