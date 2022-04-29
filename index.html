@@ -8,49 +8,131 @@
 
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
     <script src="calculator.js"></script>
   </head>
   <body>
-    <div id="target" class="container"></div>
+    <section class="hero is-primary">
+      <div class="hero-body">
+        <p class="title">
+          GCP Pub/Sub throughput estimator
+        </p>
+        <p class="subtitle">
+          calculator thing
+        </p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container" id="ractive-target"></div>
+    </section>
 
     <script id="template" type="text/ractive">
-      <div class="columns is-centered is-vcentered">
-        <div class="column is-one-third">
-          <h2>Message</h2>
-          <textarea class="textarea" rows="10" placeholder='{"some_property": true}'>{{message}}</textarea>
+      <div class="tile is-ancestor">
+        <div class="tile is-parent is-invisible is-2">
+          <article class="tile is-child notification is-success">
+            <div class="content">
+              <p class="title">Tall tile</p>
+              <p class="subtitle">With even more content</p>
+              <div class="content">
+                <!-- Content -->
+              </div>
+            </div>
+          </article>
         </div>
-        <div class="column is-narrow">
-          Message size is <span class="is-family-monospace has-text-weight-bold">{{messageSize}}B</span>.
-        </div>
-        </div>
-        <div class="columns is-centered is-vcentered">
-        <div class="column is-one-third">
-          <h2>Custom attributes</h2>
-          <textarea class="textarea" rows="3">{{attributes}}</textarea>
-        </div>
-        <div class="column is-narrow">
-          Attributes size is <span class="is-family-monospace has-text-weight-bold">{{attributesSize}}B</span>.
-        </div>
-        </div>
-        <div class="columns is-centered is-vcentered">
-        <div class="column is-narrow">
-          <h2>Other metadata</h2>
-          <ul>
-            <li>The <span class="is-family-monospace">timestamp</span> field is <span class="is-family-monospace has-text-weight-bold">20B</span>.
-            <li>Hm.
-          </ul>
-        </div>
-        </div>
+        <div class="tile is-vertical is-8">
+          <div class="tile is-parent">
+            <article class="tile notification is-info">
+              <div class="tile is-child">
+                <p class="title">Data</p>
+                <p class="subtitle">A base64-encoded string.</p>
+                <p class="content">
+                  Message size is <span class="is-family-monospace has-text-weight-bold">{{messageSize}}B</span>.
+                </p>
+              </div>
+              <div class="tile is-child">
+                <div class="content">
+                  <textarea class="textarea" rows="10">{{message}}</textarea>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile notification is-info">
+              <div class="tile is-child">
+                <p class="title">Attributes</p>
+                <p class="subtitle">Key-value (can be empty)</p>
+                <p class="content">
+                  Attributes size is <span class="is-family-monospace has-text-weight-bold">{{attributesSize}}B</span>.
+                </p>
+              </div>
+              <div class="tile is-child">
+                <div class="content">
+                  <textarea class="textarea" rows=10>{{attributes}}</textarea>
+                </div>
+              </div>
+            </article>
+          </div>
+          <div class="tile is-parent">
+            <article class="tile notification is-info">
+              <div class="tile is-child">
+                <p class="title">Other metadata</p>
+                <div class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <p class="subtitle">Message ID</p>
+                      <p class="content is-small">Can't overwrite</p>
+                    </div>
+                  </div>
+                  <div class="level-right">
+                    <div class="level-item"><span class="is-family-monospace">messageId: "string"</span></div>
+                  </div>
+                </div>
+                <div class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <p class="subtitle">Timestamp</p>
+                      <p class="content is-small">Can't overwrite</p>
+                    </div>
+                  </div>
+                  <div class="level-right">
+                    <div class="level-item"><span class="is-family-monospace">publishTime: "2014-10-02T15:01:23.045123456Z"</span></div>
+                  </div>
+                </div>
+                <div class="level">
+                  <div class="level-left">
+                    <div class="level-item">
+                      <p class="subtitle">Order key</p>
+                      <p class="content is-small">Hm</p>
+                    </div>
+                  </div>
+                  <div class="level-right">
+                    <div class="level-item"><span class="is-family-monospace">orderingKey: "string"</span></div>
+                  </div>
+                </div>
 
-        <div class="columns is-centered">
-        <div class="column is-narrow">
-          Total payload size is <span class="is-family-monospace has-text-weight-bold">{{payloadSize}}B</span>.
-        </div>
-        </div>
+              </div>
+            </article>
+          </div>
 
+          <div class="tile is-vertical">
+            <div class="tile is-parent">
+              <article class="tile notification is-info">
+                <div class="tile is-child">
+                  <p class="title">Message</p>
+                  <p class="subtitle">Total payload size</p>
+                </div>
+                <div class="tile is-child">
+                  <p class="content has-text-justified">
+                    <span class="is-family-monospace has-text-weight-bold is-size-1">{{payloadSize}}B</span>
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
         <div class="columns is-centered">
         <div class="column is-one-third">
           <h2 class="title is-5">Production rate</h2>

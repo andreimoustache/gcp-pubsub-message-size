@@ -48,7 +48,7 @@ function getSerialisedSize(o) {
 document.addEventListener("DOMContentLoaded", function (_) {
   const defaultMessage = { "some_property": true };
   new Ractive({
-    target: "#target",
+    target: "#ractive-target",
     template: "#template",
     data: {
       message: JSON.stringify(defaultMessage, null, 2),
