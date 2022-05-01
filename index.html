@@ -51,7 +51,10 @@
             <article class="tile notification is-primary">
               <div class="tile is-child">
                 <p class="title">Data</p>
-                <p class="subtitle">A base64-encoded string.</p>
+                <p class="subtitle">Assumes <span class="is-family-monospace">JSON</span></p>
+                <p class="content">
+                  Whatever data you're publishing.
+                </p>
                 <p class="content">
                   Message size is <span class="is-family-monospace has-text-weight-bold">{{messageSize}}B</span>.
                 </p>
@@ -67,7 +70,10 @@
             <article class="tile notification is-primary">
               <div class="tile is-child">
                 <p class="title">Attributes</p>
-                <p class="subtitle">Key-value (can be empty)</p>
+                <p class="subtitle">Key-value, optional</p>
+                <p class="content">
+                  Use these to allow subscribers to filter messages.
+                </p>
                 <p class="content">
                   Attributes size is <span class="is-family-monospace has-text-weight-bold">{{attributesSize}}B</span>.
                 </p>
@@ -86,8 +92,9 @@
                 <div class="level">
                   <div class="level-left">
                     <div class="level-item">
-                      <p class="subtitle">Message ID</p>
-                      <p class="content is-small">Can't overwrite</p>
+                      <p class="content">
+                        <span class="subtitle">Message ID</span> (<span class="is-small">Can't overwrite</span>)
+                      </p>
                     </div>
                   </div>
                   <div class="level-right">
@@ -97,8 +104,9 @@
                 <div class="level">
                   <div class="level-left">
                     <div class="level-item">
-                      <p class="subtitle">Timestamp</p>
-                      <p class="content is-small">Can't overwrite</p>
+                      <p class="content">
+                        <span class="subtitle">Timestamp</span> (<span class="is-small">Can't overwrite</span>)
+                      </p>
                     </div>
                   </div>
                   <div class="level-right">
@@ -108,8 +116,9 @@
                 <div class="level">
                   <div class="level-left">
                     <div class="level-item">
-                      <p class="subtitle">Order key</p>
-                      <p class="content is-small">Hm</p>
+                      <p class="content">
+                        <span class="subtitle">Order key</span> (<span class="is-small">Optional</span>)
+                      </p>
                     </div>
                   </div>
                   <div class="level-right">
@@ -126,10 +135,22 @@
               <article class="tile notification is-primary">
                 <div class="tile is-child">
                   <p class="title">Message</p>
-                  <p class="subtitle">Total payload size</p>
+                  <p class="subtitle">Total payload size (estimated)</p>
+                  <!-- <p class="content">
+                    The sum of the
+                    <span class="has-text-weight-bold">encoded data</span>, 
+                    <span class="has-text-weight-bold">attributes</span>,
+                    and <span class="has-text-weight-bold">other metadata</span>.
+                  </p> -->
+                  <p class="content">
+                    This is <span class="has-text-weight-bold">only an estimate</span>,
+                    and the actual size might differ by some bytes due to some fields being
+                    out of the publisher's control, e.g. <span class="is-family-monospace">ID</span>,
+                    <span class="is-family-monospace">timestamp</span>.
+                  </p>
                 </div>
-                <div class="tile is-child">
-                  <p class="content has-text-justified">
+                <div class="tile is-child has-text-centered">
+                  <p class="content">
                     <span class="is-family-monospace has-text-weight-bold is-size-1">{{payloadSize}}B</span>
                   </p>
                 </div>
