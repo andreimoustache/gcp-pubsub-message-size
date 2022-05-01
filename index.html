@@ -132,7 +132,7 @@
 
           <div class="tile is-vertical">
             <div class="tile is-parent">
-              <article class="tile notification is-primary">
+              <article class="tile notification is-success">
                 <div class="tile is-child">
                   <p class="title">Message</p>
                   <p class="subtitle">Total payload size (estimated)</p>
@@ -157,25 +157,49 @@
               </article>
             </div>
           </div>
-        </div>
-      </div>
-        <div class="columns is-centered">
-        <div class="column is-one-third">
-          <h2 class="title is-5">Production rate</h2>
-          <p class="subtitle is-6 is-italic">messages over a time period</p>
-          <div class="field is-horizontal">
-            <input type="number" class="input" value={{rate}}> per
-            <div class="select">
-              <select>
-                <option>day</option>
-              </select>
+
+          <div class="tile is-vertical">
+            <div class="tile is-parent">
+              <article class="tile notification is-primary">
+                <div class="tile is-child">
+                  <p class="title">Production rate</p>
+                  <p class="subtitle">Messages produced over a time period</p>
+                  <p class="content">
+                    How many messages you expect to publish in
+                    <span class="has-text-weight-bold">a day</span>.
+                  </p>
+                </div>
+                <div class="tile is-child has-text-centered">
+                    <div class="field is-horizontal">
+                      <div class="control is-expanded">
+                        <input type="number" class="input" value={{rate}}>
+                      </div>
+                      <div class="control is-expanded"><a class="button is-static">/ day</a></div>
+                    </div>
+                </div>
+              </article>
             </div>
           </div>
-        </div>
-        </div>
-        <div class="columns is-centered">
-        <div class="column is-narrow">
-          Daily volume is <span class="is-family-monospace has-text-weight-bold">{{volume.amount}} {{volume.units}}</span> per day.
+
+          <div class="tile is-vertical">
+            <div class="tile is-parent">
+              <article class="tile notification is-success">
+                <div class="tile is-child">
+                  <p class="title">Volume</p>
+                  <p class="subtitle">Estimated</p>
+                  <p class="content">
+                    How much data you can expect to pass through the topic in the set time.
+                  </p>
+                </div>
+                <div class="tile is-child has-text-centered">
+                  <p class="content">
+                    <span class="is-family-monospace has-text-weight-bold is-size-1">{{volume.amount}} {{volume.units}}</span> per day.
+                  </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
         </div>
       </div>
     </script>
