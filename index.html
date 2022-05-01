@@ -4,7 +4,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Primary Meta Tags -->
     <title>GCP Pub/Sub message size estimator</title>
+    <meta name="title" content="GCP Pub/Sub message size estimator">
+    <meta name="description" content="Estimate GCP Pub/Sub message sizes and topic throughput">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://amoustache.net/gcp-pubsub-message-size/">
+    <meta property="og:title" content="GCP Pub/Sub message size estimator">
+    <meta property="og:description" content="Estimate GCP Pub/Sub message sizes and topic throughput">
+    <meta property="og:image" content="https://amoustache.net/gcp-pubsub-message-size/diagram.svg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://amoustache.net/gcp-pubsub-message-size/">
+    <meta property="twitter:title" content="GCP Pub/Sub message size estimator">
+    <meta property="twitter:description" content="Estimate GCP Pub/Sub message sizes and topic throughput">
+    <meta property="twitter:image" content="https://amoustache.net/gcp-pubsub-message-size/diagram.svg">
 
     <link
       rel="stylesheet"
@@ -20,8 +37,8 @@
   <body>
     <section class="hero is-info">
       <div class="hero-body">
-        <p class="title">GCP Pub/Sub throughput estimator</p>
-        <p class="subtitle">calculator thing</p>
+        <p class="title">GCP Pub/Sub message size estimator</p>
+        <p class="subtitle">Estimate GCP Pub/Sub message sizes and topic throughput</p>
       </div>
     </section>
     <section class="section">
@@ -195,6 +212,34 @@
                   <p class="content">
                     <span class="is-family-monospace has-text-weight-bold is-size-1">{{volume.amount}} {{volume.units}}</span> per day.
                   </p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="tile is-vertical">
+            <div class="tile is-parent">
+              <article class="tile notification is-link">
+                <div class="tile is-child">
+                  <p class="title">References</p>
+                  <p class="subtitle">Read moar</p>
+                  <p class="content"></p>
+                </div>
+                <div class="tile is-child">
+                  <div class="content is-size-5">
+                    <ul>
+                      <li>
+                        <a href="https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage">
+                          GCP Pub/Sub message format
+                        </a>
+                      </li>
+                      <li>
+                        <a href="https://cloud.google.com/pubsub/pricing">
+                          GCP Pub/Sub pricing
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </article>
             </div>
