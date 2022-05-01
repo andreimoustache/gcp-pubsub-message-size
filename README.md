@@ -1,5 +1,7 @@
 # gcp-pubsub-size-estimator
 
+![](diagram.svg)
+
 Converts `JSON` to `utf-8` bytes, which is then `base64`-encoded.
 
 GCP PubSub message format: https://cloud.google.com/pubsub/docs/reference/rest/v1/PubsubMessage
